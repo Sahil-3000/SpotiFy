@@ -1,290 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Clone</title>
-    <style>
-        /* CSS styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background-color: #121212;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .container {
-            width: 95%;
-            max-width: 1300px;
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            gap: 20px;
-        }
-
-        .sidebar,
-        .now-playing {
-            background-color: #181818;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .main-content {
-            background-color: #121212;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        .track-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .track-info img {
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-            border-radius: 8px;
-        }
-
-        .playback-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 15px 0;
-        }
-
-        .playback-controls svg {
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            margin: 0 10px;
-        }
-
-        .volume-control {
-            width: 30%;
-            margin-top: 10px;
-            margin-left:70%;
-        }
-
-        .volume-control input[type="range"],
-        .progress-bar input[type="range"] {
-            width: 100%;
-        }
-
-        .progress-bar {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .time {
-            font-size: 12px;
-            color: #b3b3b3;
-            margin: 0 8px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Clone</title>
+  <style>
+    /* General Reset and Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #121212;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    /* Sidebar Styling */
+    .sidebar {
+      width: 250px;
+      background-color: #000;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sidebar h2, .sidebar h3, .sidebar p {
+      color: #fff;
+    }
+    .sidebar h3 {
+      margin-bottom: 10px;
+    }
+    .sidebar .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .sidebar .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .sidebar .nav-link:hover {
+      background-color: #282828;
+    }
+    .sidebar .nav-link img {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+    }
+    .sidebar .playlist-title {
+      font-weight: bold;
+      margin-top: 15px;
+      color: #b3b3b3;
+    }
+    .sidebar .playlist-item {
+      margin-left: 10px;
+      color: #b3b3b3;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+    .sidebar .playlist-item:hover {
+      color: #fff;
+    }
+    /* Main Content Styling */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: linear-gradient(to bottom, #2c2c2c, #121212);
+    }
+    .main-content .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .main-content .header input {
+      width: 50%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: #3e3e3e;
+      color: #fff;
+    }
+    .main-content .header .header-icons img {
+      width: 24px;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+    .main-content h2 {
+      margin: 20px 0;
+    }
+    .content-section {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+    }
+    .card {
+      background-color: #282828;
+      border-radius: 8px;
+      width: 150px;
+      text-align: center;
+      overflow: hidden;
+      padding: 10px;
+    }
+    .card img {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+    }
+    .card p {
+      font-size: 0.85em;
+      color: #b3b3b3;
+    }
+    /* Now Playing Section Styling */
+    .now-playing {
+      width: 300px;
+      background-color: #181818;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .now-playing img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .now-playing .song-details {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .now-playing .song-details h4 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+    .now-playing .song-details p {
+      font-size: 0.9em;
+      color: #b3b3b3;
+    }
+    .now-playing .controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+    }
+    .now-playing .controls button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+    }
+    .now-playing .slider {
+      margin-top: 15px;
+      width: 100%;
+    }
+    .now-playing .slider input[type="range"] {
+      width: 100%;
+      appearance: none;
+      height: 5px;
+      background: #535353;
+      border-radius: 5px;
+    }
+    .now-playing .slider input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 10px;
+      height: 10px;
+      background: #1db954;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Your Library</h2>
-            <ul>
-                <li>Liked Songs</li>
-                <li>Recently Played</li>
-                <li>Albums</li>
-                <li>Playlists</li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <h2>Made For You</h2>
-            <div class="track-info">
-                <img id="current-track-cover" src="track1.jpg" alt="Track Cover"> <!-- Placeholder image -->
-                <div>
-                    <div class="track-title" id="current-track-title">Jo Tum Mere Ho</div>
-                    <div class="track-artist" id="current-track-artist">Anuv Jain</div>
-                </div>
-            </div>
-            <div class="playback-controls">
-                <svg onclick="prevTrack()">
-                    <use href="#prev-icon"></use>
-                </svg>
-                <svg onclick="togglePlayPause()" id="play-pause-icon">
-                    <use href="#play-icon"></use>
-                </svg>
-                <svg onclick="nextTrack()">
-                    <use href="#next-icon"></use>
-                </svg>
-            </div>
-            <div class="progress-bar">
-                <span id="current-time" class="time">0:00</span>
-                <input type="range" id="progress-slider" value="0" min="0" max="100" step="1">
-                <span id="duration" class="time">0:00</span>
-            </div>
-            <div class="volume-control">
-                <input type="range" min="0" max="100" value="50" onchange="setVolume()">
-            </div>
-        </div>
-
-        <!-- Now Playing -->
-        <div class="now-playing">
-            <h2>Now Playing</h2>
-            <div class="track-info">
-                <img id="now-playing-cover" src="track1.jpg" alt="Now Playing Cover">
-                <div>
-                    <div class="track-title" id="now-playing-title">Jo Tum Mere Ho</div>
-                    <div class="track-artist" id="now-playing-artist">Anuv Jain</div>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">Spotify Clone</div>
+      <h3>Your Library</h3>
+      <div class="nav-link">
+        <img src="artist.jpg" alt="Lady Gaga">Lady Gaga
+      </div>
+      <div class="nav-link">
+        <img src="album.jpg" alt="Saadiyan Gallan 3">Saadiyan Gallan 3
+      </div>
+      <p class="playlist-title">Playlists</p>
+      <div class="playlist-item">Liked Songs</div>
+      <div class="playlist-item">Workout</div>
+      <div class="playlist-item">Nice</div>
     </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header">
+        <input type="text" placeholder="What do you want to play?">
+        <div class="header-icons">
+          <img src="explore.png" alt="Explore">
+          <img src="profile.png" alt="Profile">
+        </div>
+      </div>
+      
+      <h2>Made For You</h2>
+      <div class="content-section">
+        <div class="card">
+          <img src="daily_mix1.jpg" alt="Daily Mix 1">
+          <p>Daily Mix 1</p>
+        </div>
+        <div class="card">
+          <img src="daily_mix2.jpg" alt="Daily Mix 2">
+          <p>Daily Mix 2</p>
+        </div>
+      </div>
+      
+      <h2>Jump back in</h2>
+      <div class="content-section">
+        <div class="card">
+          <img src="fly_karke.jpg" alt="Fly Karke">
+          <p>Fly Karke</p>
+        </div>
+        <div class="card">
+          <img src="saadiyan.jpg" alt="Saadiyan Gallan 3">
+          <p>Saadiyan Gallan 3</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Now Playing Section -->
+    <div class="now-playing">
+      <img src="now_playing.jpg" alt="Now Playing">
+      <div class="song-details">
+        <h4>Jo Tum Mere Ho</h4>
+        <p>By Anuv Jain</p>
+      </div>
+      <div class="controls">
+        <button><svg><use href="#prev-icon"></use></svg></button>
+        <button><svg><use href="#play-icon"></use></svg></button>
+        <button><svg><use href="#next-icon"></use></svg></button>
+      </div>
+      <div class="slider">
+        <input type="range" min="0" max="100" value="0">
+      </div>
+    </div>
+  </div>
 
-    <!-- SVG Icons -->
-    <svg style="display: none;">
-        <symbol id="play-icon" viewBox="0 0 24 24">
-            <path fill="white" d="M8 5v14l11-7z"></path>
-        </symbol>
-        <symbol id="pause-icon" viewBox="0 0 24 24">
-            <path fill="white" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
-        </symbol>
-        <symbol id="prev-icon" viewBox="0 0 24 24">
-            <path fill="white" d="M11 19V5l-7 7zM12 5v14l7-7z"></path>
-        </symbol>
-        <symbol id="next-icon" viewBox="0 0 24 24">
-            <path fill="white" d="M7 5v14l7-7zM16 5v14l-7-7z"></path>
-        </symbol>
-    </svg>
+  <!-- SVG Icons -->
+  <svg style="display: none;">
+    <symbol id="play-icon" viewBox="0 0 24 24">
+      <path fill="white" d="M8 5v14l11-7z"></path>
+    </symbol>
+    <symbol id="pause-icon" viewBox="0 0 24 24">
+      <path fill="white" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+    </symbol>
+    <symbol id="prev-icon" viewBox="0 0 24 24">
+      <path fill="white" d="M11 19V5l-7 7zM12 5v14l7-7z"></path>
+    </symbol>
+    <symbol id="next-icon" viewBox="0 0 24 24">
+      <path fill="white" d="M7 5v14l7-7zM16 5v14l-7-7z"></path>
+    </symbol>
+  </svg>
+  
+  <script>
+    // JavaScript for play/pause toggle and slider update
 
-    <script>
-        // JavaScript code with audio functionality and progress bar
+    const playButton = document.querySelector('.controls button:nth-child(2)');
+    const playIcon = document.querySelector('use[href="#play-icon"]');
+    let isPlaying = false;
 
-        const playlist = [
-            {
-                title: "Jo Tum Mere Ho",
-                artist: "Anuv Jain",
-                cover: "track1.jpg",
-                audio: "audio1.mp3"
-            },
-            {
-                title: "Fly Karke",
-                artist: "SABBA, Jasmeen",
-                cover: "track2.jpg",
-                audio: "audio2.mp3"
-            },
-            {
-                title: "Ik Mutiyar Hundi Si",
-                artist: "HUSTINDER, Black",
-                cover: "track3.jpg",
-                audio: "audio3.mp3"
-            }
-        ];
+    playButton.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playIcon.setAttribute('href', isPlaying ? '#pause-icon' : '#play-icon');
+    });
 
-        let currentTrackIndex = 0;
-        let isPlaying = false;
-        let audio = new Audio(playlist[currentTrackIndex].audio);
+    const slider = document.querySelector('.slider input[type="range"]');
+    let currentDuration = 0;
+    const maxDuration = 240; // assuming 240 seconds for demonstration
 
-        const currentTrackTitle = document.getElementById('current-track-title');
-        const currentTrackArtist = document.getElementById('current-track-artist');
-        const currentTrackCover = document.getElementById('current-track-cover');
-        const nowPlayingTitle = document.getElementById('now-playing-title');
-        const nowPlayingArtist = document.getElementById('now-playing-artist');
-        const nowPlayingCover = document.getElementById('now-playing-cover');
-        const playPauseIcon = document.getElementById('play-pause-icon');
-        const progressSlider = document.getElementById('progress-slider');
-        const currentTimeElement = document.getElementById('current-time');
-        const durationElement = document.getElementById('duration');
-
-        function loadTrack(trackIndex) {
-            const track = playlist[trackIndex];
-            currentTrackTitle.textContent = track.title;
-            currentTrackArtist.textContent = track.artist;
-            currentTrackCover.src = track.cover;
-            nowPlayingTitle.textContent = track.title;
-            nowPlayingArtist.textContent = track.artist;
-            nowPlayingCover.src = track.cover;
-
-            audio.src = track.audio;
-            audio.load();
-
-            audio.onloadedmetadata = () => {
-                durationElement.textContent = formatTime(audio.duration);
-                progressSlider.max = Math.floor(audio.duration);
-            };
-        }
-
-        loadTrack(currentTrackIndex);
-
-        function togglePlayPause() {
-            if (isPlaying) {
-                audio.pause();
-                playPauseIcon.innerHTML = '<use href="#play-icon"></use>';
-                isPlaying = false;
-            } else {
-                audio.play();
-                playPauseIcon.innerHTML = '<use href="#pause-icon"></use>';
-                isPlaying = true;
-            }
-        }
-
-        function nextTrack() {
-            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-            loadTrack(currentTrackIndex);
-            audio.play();
-            playPauseIcon.innerHTML = '<use href="#pause-icon"></use>';
-            isPlaying = true;
-        }
-
-        function prevTrack() {
-            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-            loadTrack(currentTrackIndex);
-            audio.play();
-            playPauseIcon.innerHTML = '<use href="#pause-icon"></use>';
-            isPlaying = true;
-        }
-
-        function setVolume() {
-            audio.volume = document.querySelector('.volume-control input').value / 100;
-        }
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs < 10 ?
-                '0' : ''}${secs}`;
-        }
-
-        audio.ontimeupdate = () => {
-            progressSlider.value = Math.floor(audio.currentTime);
-            currentTimeElement.textContent = formatTime(audio.currentTime);
-        };
-
-        progressSlider.oninput = () => {
-            audio.currentTime = progressSlider.value;
-        };
-
-        audio.onended = () => {
-            nextTrack(); // Automatically move to the next track when the current one ends
-        };
-    </script>
+    // Simulate song duration progress
+    setInterval(() => {
+      if (isPlaying && currentDuration < maxDuration) {
+        currentDuration++;
+        slider.value = (currentDuration / maxDuration) * 100;
+      }
+    }, 1000);
+  </script>
 </body>
-
 </html>
