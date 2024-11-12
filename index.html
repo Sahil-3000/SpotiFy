@@ -3,251 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spotify Clone</title>
+  <title>Spotify Clone Interface</title>
   <style>
-    /* General Reset and Styling */
+    /* General styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
+
     body {
-      background-color: #121212;
-      color: #fff;
-    }
-    .container {
-      display: flex;
-      height: 100vh;
-    }
-    /* Sidebar Styling */
-    .sidebar {
-      width: 250px;
-      background-color: #000;
-      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      height: 100vh;
+      background-color: #121212;
+      color: #ffffff;
     }
-    .sidebar h2, .sidebar h3, .sidebar p {
-      color: #fff;
-    }
-    .sidebar h3 {
-      margin-bottom: 10px;
-    }
-    .sidebar .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .sidebar .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .sidebar .nav-link:hover {
-      background-color: #282828;
-    }
-    .sidebar .nav-link img {
-      width: 30px;
-      height: 30px;
-      border-radius: 5px;
-    }
-    .sidebar .playlist-title {
-      font-weight: bold;
-      margin-top: 15px;
-      color: #b3b3b3;
-    }
-    .sidebar .playlist-item {
-      margin-left: 10px;
-      color: #b3b3b3;
-      font-size: 0.9em;
-      cursor: pointer;
-    }
-    .sidebar .playlist-item:hover {
-      color: #fff;
-    }
-    /* Main Content Styling */
-    .main-content {
-      flex: 1;
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #000000;
+      width: 20%;
       padding: 20px;
       overflow-y: auto;
-      background: linear-gradient(to bottom, #2c2c2c, #121212);
     }
-    .main-content .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+    .sidebar h2, .sidebar h3 {
+      margin-bottom: 10px;
     }
-    .main-content .header input {
-      width: 50%;
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-      outline: none;
-      background-color: #3e3e3e;
-      color: #fff;
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
     }
-    .main-content .header .header-icons img {
-      width: 24px;
-      margin-left: 15px;
+
+    .sidebar li {
+      padding: 10px 0;
       cursor: pointer;
     }
-    .main-content h2 {
-      margin: 20px 0;
-    }
-    .content-section {
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-    }
-    .card {
-      background-color: #282828;
-      border-radius: 8px;
-      width: 150px;
-      text-align: center;
-      overflow: hidden;
-      padding: 10px;
-    }
-    .card img {
-      width: 100%;
-      height: 120px;
-      border-radius: 8px;
-    }
-    .card p {
-      font-size: 0.85em;
-      color: #b3b3b3;
-    }
-    /* Now Playing Section Styling */
-    .now-playing {
-      width: 300px;
-      background-color: #181818;
+
+    /* Main content */
+    .main-content {
+      flex-grow: 1;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #181818;
+      overflow-y: auto;
     }
-    .now-playing img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .now-playing .song-details {
-      margin-top: 15px;
-      text-align: center;
-    }
-    .now-playing .song-details h4 {
+
+    .section-title {
       font-size: 1.2em;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
-    .now-playing .song-details p {
-      font-size: 0.9em;
+
+    .album {
+      width: 100%;
+      max-width: 150px;
+      background-color: #282828;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      margin: 10px;
       color: #b3b3b3;
     }
-    .now-playing .controls {
-      margin-top: 15px;
+
+    /* Album grid */
+    .albums {
       display: flex;
-      gap: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .now-playing .controls button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      width: 24px;
-      height: 24px;
-    }
-    .now-playing .slider {
-      margin-top: 15px;
+
+    /* Music player */
+    .music-player {
+      background: #181818;
+      position: fixed;
+      bottom: 0;
       width: 100%;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
     }
-    .now-playing .slider input[type="range"] {
-      width: 100%;
-      appearance: none;
-      height: 5px;
-      background: #535353;
+
+    .music-player img {
+      width: 50px;
+      height: 50px;
       border-radius: 5px;
     }
-    .now-playing .slider input[type="range"]::-webkit-slider-thumb {
-      appearance: none;
-      width: 10px;
-      height: 10px;
-      background: #1db954;
-      border-radius: 50%;
-      cursor: pointer;
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slider {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 15px;
+    }
+
+    .slider input[type="range"] {
+      width: 100%;
+    }
+
+    /* Responsive Design for Mobile */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+
+      .main-content {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .albums {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .music-player {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .slider {
+        max-width: 100%;
+      }
+
+      .controls {
+        gap: 5px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="logo">Spotify Clone</div>
-      <h3>Your Library</h3>
-      <div class="nav-link">
-        <img src="artist.jpg" alt="Lady Gaga">Lady Gaga
-      </div>
-      <div class="nav-link">
-        <img src="album.jpg" alt="Saadiyan Gallan 3">Saadiyan Gallan 3
-      </div>
-      <p class="playlist-title">Playlists</p>
-      <div class="playlist-item">Liked Songs</div>
-      <div class="playlist-item">Workout</div>
-      <div class="playlist-item">Nice</div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Your Library</h2>
+    <ul>
+      <li>Playlists</li>
+      <li>Artists</li>
+      <li>Albums</li>
+      <li>Podcasts & Shows</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h3 class="section-title">Made For You</h3>
+    <div class="albums">
+      <div class="album">Album 1</div>
+      <div class="album">Album 2</div>
+      <div class="album">Album 3</div>
     </div>
-    
-    <!-- Main Content -->
-    <div class="main-content">
-      <div class="header">
-        <input type="text" placeholder="What do you want to play?">
-        <div class="header-icons">
-          <img src="explore.png" alt="Explore">
-          <img src="profile.png" alt="Profile">
-        </div>
-      </div>
-      
-      <h2>Made For You</h2>
-      <div class="content-section">
-        <div class="card">
-          <img src="daily_mix1.jpg" alt="Daily Mix 1">
-          <p>Daily Mix 1</p>
-        </div>
-        <div class="card">
-          <img src="daily_mix2.jpg" alt="Daily Mix 2">
-          <p>Daily Mix 2</p>
-        </div>
-      </div>
-      
-      <h2>Jump back in</h2>
-      <div class="content-section">
-        <div class="card">
-          <img src="fly_karke.jpg" alt="Fly Karke">
-          <p>Fly Karke</p>
-        </div>
-        <div class="card">
-          <img src="saadiyan.jpg" alt="Saadiyan Gallan 3">
-          <p>Saadiyan Gallan 3</p>
-        </div>
-      </div>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player">
+    <img src="album-cover.jpg" alt="Album Cover">
+    <div class="controls">
+      <button><svg><use href="#prev-icon"></use></svg></button>
+      <button><svg><use href="#play-icon"></use></svg></button>
+      <button><svg><use href="#next-icon"></use></svg></button>
     </div>
-    
-    <!-- Now Playing Section -->
-    <div class="now-playing">
-      <img src="now_playing.jpg" alt="Now Playing">
-      <div class="song-details">
-        <h4>Jo Tum Mere Ho</h4>
-        <p>By Anuv Jain</p>
-      </div>
-      <div class="controls">
-        <button><svg><use href="#prev-icon"></use></svg></button>
-        <button><svg><use href="#play-icon"></use></svg></button>
-        <button><svg><use href="#next-icon"></use></svg></button>
-      </div>
-      <div class="slider">
-        <input type="range" min="0" max="100" value="0">
-      </div>
+    <div class="slider">
+      <input type="range" min="0" max="100" value="0">
+    </div>
+    <div class="time">
+      <span id="current-time">0:00</span> / <span id="total-time">4:00</span>
     </div>
   </div>
 
@@ -266,10 +200,9 @@
       <path fill="white" d="M7 5v14l7-7zM16 5v14l-7-7z"></path>
     </symbol>
   </svg>
-  
+
   <script>
     // JavaScript for play/pause toggle and slider update
-
     const playButton = document.querySelector('.controls button:nth-child(2)');
     const playIcon = document.querySelector('use[href="#play-icon"]');
     let isPlaying = false;
@@ -288,8 +221,11 @@
       if (isPlaying && currentDuration < maxDuration) {
         currentDuration++;
         slider.value = (currentDuration / maxDuration) * 100;
+
+        // Update displayed time
+        document.getElementById("current-time").innerText = `${Math.floor(currentDuration / 60)}:${(currentDuration % 60).toString().padStart(2, '0')}`;
       }
     }, 1000);
   </script>
 </body>
-</html>
+                                            </html>
