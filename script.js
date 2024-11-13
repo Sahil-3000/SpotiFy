@@ -2,7 +2,13 @@
 const playlist = [
     { title: "Jo Tum Mere Ho", artist: "Anuv Jain", cover: "track1.jpg", audio: "audio1.mp3" },
     { title: "Fly Karke", artist: "SABBA, Jasmeen", cover: "track2.jpg", audio: "audio2.mp3" },
-    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "track3.jpg", audio: "audio3.mp3" }
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "track3.jpg", audio: "audio3.mp3" },
+     { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio4.mp3" },
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio5.mp3" },
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio6.mp3" },
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio7.mp3" },
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio8.mp3" },
+    { title: "Ik Mutiyar Hundi Si", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio9.mp3" },
 ];
 
 let currentTrackIndex = 0;
