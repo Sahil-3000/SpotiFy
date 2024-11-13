@@ -8,7 +8,7 @@ const playlist = [
     { title: "Maavan", artist: "Arjan Dhillon", cover: "Chobbar.jpg", audio: "audio6.mp3" },
     { title: "Glorious", artist: "Arjan Dhillon", cover: "Chobbar.jpg", audio: "audio7.mp3" },
     { title: "Biography, artist: "Arjan Dhillon", cover: "Chobbar.jpg", audio: "audio8.mp3" },
-    { title: "Back To Sikhi", artist: "HUSTINDER, Black", cover: "Chobbar.jpg", audio: "audio9.mp3" },
+    { title: "Back To Sikhi", artist: "Arjan Dhillon", cover: "Chobbar.jpg", audio: "audio9.mp3" }
 ];
 
 let currentTrackIndex = 0;
