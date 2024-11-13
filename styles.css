@@ -17,7 +17,10 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-
+.home-search {
+    display:flex;
+    gap:15px;
+}
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -25,7 +28,19 @@ body {
     width: 100%;
     gap: 15px;
 }
+.home {
+    display:flex;
+    width:40px;
+    height:40px;
+    padding:none;
 
+}
+.home img{
+    object-fit:cover;
+    margin-top:4px;
+    width:100%;
+    height:100%;
+}
 /* Sidebar1 */
 .sidebar1 {
     border-radius: 8px;
@@ -38,11 +53,27 @@ body {
     bottom: 50px;
 }
 
+.library-item {
+    border-radius:15px;
+    display:flex;
+    width: 100%;
+    height:100px;
+    gap:15px;
+    text-decoration-thickness: bold;
+}
+.library-item img {
+    border-radius:15px;
+    width:30%;
+    height:100%;
+    object-fit:cover;
+
+}
+
 /* Sidebar2 */
 .sidebar2 {
     width: 100%;
     background-size: cover; /* Cover the entire sidebar */
-    background-position: left; /*Center the image */
+    background-position: center; /* center the image */
 
     border-radius: 8px; /* Apply border-radius */
     display: flex;
@@ -284,6 +315,45 @@ footer.now-playing {
 }
 
 .recommended-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the div */
+    /* }
+.playback-controls svg {
+    cursor: pointer;
+    /* width: 24px;
+    height: 24px;
+    margin: 0 10px; */
+}
+
+
+.trending {
+    padding: 0;
+}
+
+.trending h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Responsive grid */
+    gap: 15px;
+}
+
+.trending-item {
+    position: relative;
+    overflow: hidden;
+    /* Ensures that the image doesn't overflow the container */
+    width: 100%;
+    height: 200px;
+    /* Ensure a fixed height for the image container */
+}
+
+.trending-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
